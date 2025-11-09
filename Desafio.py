@@ -8,7 +8,7 @@ modelos = ['llama-3.3-70b-versatile']
 def configurarPagina():
 
     st.title("NeuroChat")
-    st.set_page_config(page_title="NeuroChat", page_icon="🎉", layout="centered")
+    st.set_page_config(page_title="NeuroChat", page_icon="🌸", layout="centered")
     st.sidebar.title("Configuración")
     elegirModelo = st.sidebar.selectbox("Elige un modelo de IA", options=modelos, index=0)
     return elegirModelo
@@ -33,7 +33,6 @@ def crear_usuario_groq():
     clave_secreta = st.secrets["CLAVE_API"]
     return Groq(api_key=clave_secreta)
 
-################ Funciones agregadas en CLASE 8 ################
 
 def actualizar_historial(rol, contenido, avatar):
     st.session_state.mensajes.append({"role": rol, "content": contenido, "avatar": avatar})
@@ -67,13 +66,13 @@ def main():
     chat_completo = None
 
     if mensaje:
-        actualizar_historial("user", mensaje, "😁")
+        actualizar_historial("user", mensaje, "😋")
         chat_completo = configurar_modelo(clienteUsuario, modelo, mensaje)
 
     if chat_completo:
         with st.chat_message("assistant"):
             respuesta_completa = st.write_stream(generar_respuesta(chat_completo))
-            actualizar_historial("assistant", respuesta_completa, "🤖")
+            actualizar_historial("assistant", respuesta_completa, "🌸")
             st.rerun()
 
 
